@@ -1026,6 +1026,8 @@ export async function addOperatorAsync({ token, values, alert, callBack }) {
   }
 }
 
+
+
 // Comments Request
 
 export async function getCommentsList({ id }) {
@@ -1217,7 +1219,7 @@ export async function getOrdersByCityId({ token }) {
 
 export async function getDataForPrinter({ token }) {
   const res = await axios({
-    url: `${server}/order/seller/getall?status=ready`,
+    url: `${server}/order/admin/getall?status=ready`,
     method: "get",
     headers: {
       auth: token,
@@ -1363,7 +1365,18 @@ export async function updateSmsSts({ token, data, alert }) {
 
 export async function getDashboardStatistics({ token }) {
   const res = await axios({
-    url: `${server}/order/admin/statistics`,
+    url: `${server}/user/balance`,
+    method: "GET",
+    headers: {
+      auth: token,
+    },
+  });
+  return res.data;
+}
+
+export async function getDashboardTotalStatistics({ token }) {
+  const res = await axios({
+    url: `${server}/order/admin-total-balance`,
     method: "GET",
     headers: {
       auth: token,
@@ -1680,6 +1693,12 @@ export async function getAllSkUList({ sku, token }) {
 
 export async function updateProductSKUList({ data, token, alert, callback }) {
   try {
+    // Modify referalPrice to include comission for each SKU in the skuList
+    data.skuList = data.skuList.map((sku) => ({
+      ...sku,
+      referalPrice: (sku.referalPrice || 0) + (sku.comission || 0), // Combine referalPrice with comission
+    }));
+
     await axios({
       method: "PUT",
       url: `${server}/product/skus`,
@@ -1688,6 +1707,7 @@ export async function updateProductSKUList({ data, token, alert, callback }) {
         auth: token,
       },
     });
+    
     alert.success({ title: "", text: "Mahsulot variantlari yangilandi" });
     callback();
   } catch (error) {

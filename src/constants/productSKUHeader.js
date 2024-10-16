@@ -29,8 +29,26 @@ const skuHeading = [
     flash: true,
   },
   {
+    id: "comission",
+    label: "Komissiya",
+    align: "center",
+    flash: true,
+  },
+  {
     id: "referalPrice",
     label: "Admin to'lovi",
+    align: "right",
+    flash: true,
+  },
+  {
+    id: "operatorPrice",
+    label: "operator to'lovi",
+    align: "right",
+    flash: true,
+  },
+  {
+    id: "sellerPrice",
+    label: "Narx harajatlarsiz",
     align: "right",
     flash: true,
   },

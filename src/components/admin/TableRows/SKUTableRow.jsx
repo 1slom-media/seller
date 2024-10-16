@@ -8,7 +8,10 @@ const SkuTableRow = ({
   fullPrice,
   discountPrice,
   purchasePrice,
+  comission,
   referalPrice,
+  operatorPrice,
+  sellerPrice,
   boughtPrice,
   skuTitle,
   availableAmount,
@@ -22,10 +25,12 @@ const SkuTableRow = ({
     const selectionID = e.target.name;
     if (val >= 0 || !val) {
       let dataToSave = { ...formData };
-      let skuList = formData.skuList?.map((skuObj, indx) => {
+      let skuList = formData.skuList?.map((skuObj) => {
         if (skuObj.uid === uid) {
           const copyObj = { ...skuObj };
           copyObj[selectionID] = val;
+  
+          // Calculate purchasePrice and comission logic
           if (selectionID === "discountPrice" && copyObj["fullPrice"] > val) {
             copyObj["purchasePrice"] = copyObj["fullPrice"] - val;
           }
@@ -42,15 +47,41 @@ const SkuTableRow = ({
           if (copyObj["fullPrice"] < copyObj["discountPrice"]) {
             copyObj["purchasePrice"] = 0;
           }
+  
+          // Ensure comission is 15% of fullPrice
+          if (selectionID === "fullPrice") {
+            copyObj["comission"] = val * 0.15;
+          }
+
+          if (selectionID === "comission") {
+            copyObj["comission"] = val
+          }
+  
+          // Update referalPrice to include comission
+          if (selectionID === "referalPrice") {
+            copyObj["referalPrice"] = val
+          }
+  
+          // Calculate sellerPrice as: fullPrice - comission - referalPrice - operatorPrice
+          copyObj["sellerPrice"] =
+            copyObj["fullPrice"] -
+            (copyObj["comission"] || 0) -
+            (copyObj["referalPrice"] || 0) -
+            (copyObj["operatorPrice"] || 0);
+  
           return copyObj;
         } else {
           return skuObj;
         }
       });
+  
       dataToSave["skuList"] = skuList;
       handleChange(dataToSave);
     }
   };
+  
+  
+
   return (
     <TableRow
       sx={{
@@ -110,6 +141,11 @@ const SkuTableRow = ({
         </Typography>
       </TableCell>
       <TableCell sx={{ py: 0 }}>
+        <Typography variant="string">
+          {comission?.toLocaleString()}
+        </Typography>
+      </TableCell>
+      <TableCell sx={{ py: 0 }}>
         <TextField
           size="small"
           sx={{ width: "120px" }}
@@ -118,6 +154,28 @@ const SkuTableRow = ({
           value={referalPrice}
           onChange={handleInputChange}
           name="referalPrice"
+        />
+      </TableCell>
+      <TableCell sx={{ py: 0 }}>
+        <TextField
+          size="small"
+          sx={{ width: "120px" }}
+          placeholder="0"
+          type="number"
+          value={operatorPrice}
+          onChange={handleInputChange}
+          name="operatorPrice"
+        />
+      </TableCell>
+      <TableCell sx={{ py: 0 }}>
+        <TextField
+          size="small"
+          sx={{ width: "120px" }}
+          placeholder="0"
+          type="number"
+          value={sellerPrice}
+          onChange={handleInputChange}
+          name="sellerPrice"
         />
       </TableCell>
       <TableCell sx={{ py: 0 }}>

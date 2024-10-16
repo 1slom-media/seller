@@ -44,37 +44,6 @@ const getSections = (t) => [
         icon: <HomeIcon fontSize="small" />,
       },
       {
-        title: t("Statistika"),
-        path: "/dashboard/analytics",
-        icon: <ChartBarIcon fontSize="small" />,
-      },
-      {
-        title: t("Moliyaviy bo'lim"),
-        path: "/dashboard/finance",
-        icon: <ChartPieIcon fontSize="small" />,
-      },
-      {
-        title: t("Logistika"),
-        path: "/dashboard/logistics",
-        icon: <TruckIcon fontSize="small" />,
-        chip: (
-          <Chip
-            color="secondary"
-            label={
-              <Typography
-                sx={{
-                  fontSize: "10px",
-                  fontWeight: "600",
-                }}
-              >
-                {t("yangi")}
-              </Typography>
-            }
-            size="small"
-          />
-        ),
-      },
-      {
         title: t("Mahsulotlar"),
         path: "/dashboard/products",
         icon: <ShoppingBagIcon fontSize="small" />,
@@ -123,48 +92,7 @@ const getSections = (t) => [
           // },
         ],
       },
-      {
-        title: t("Konkurs"),
-        path: "/dashboard/game",
-        icon: <CardGiftcardIcon fontSize="small" />,
-      },
-      {
-        title: t("Foydalanuvchilar"),
-        path: "/dashboard/users",
-        icon: <UsersIcon fontSize="small" />,
-        children: [
-          {
-            title: t("Adminlar"),
-            path: "/dashboard/users/customers?page=1&limit=7",
-          },
-          {
-            title: t("Operatorlar"),
-            path: "/dashboard/users/operators?page=1&limit=7",
-          },
-          {
-            title: t("Kuryerlar"),
-            path: "/dashboard/users/carriers",
-          },
-          // {
-          //   title: t('Details'),
-          //   path: '/dashboard/customers/1'
-          // },
-          // {
-          //   title: t('Edit'),
-          //   path: '/dashboard/customers/1/edit'
-          // }
-        ],
-      },
-      {
-        title: t("Qora ro'yhat"),
-        path: "/dashboard/blacklist/1",
-        icon: <AppBlockingIcon fontSize="small" />,
-      },
-      {
-        title: t("To'lovlar"),
-        path: `/dashboard/payment/?page=1&limit=7&from=1640977200000=${new Date().getTime()}&status=all`,
-        icon: <CreditCardIcon fontSize="small" />,
-      },
+    
       // {
       //   title: "Chat",
       //   path: "/dashboard/chat",
@@ -172,31 +100,7 @@ const getSections = (t) => [
       // },
     ],
   },
-  {
-    title: t("Sayt"),
-    items: [
-      {
-        title: t("Sozlamalar"),
-        path: "/dashboard/settings",
-        icon: <SettingsIcon fontSize="small" />,
-      },
-      {
-        title: t("Sayt banneri"),
-        path: "/dashboard/display-settings",
-        icon: <MonitorIcon fontSize="small" />,
-      },
-      {
-        title: t("Kiber xavfsizlik"),
-        path: "/dashboard/cyber-security",
-        icon: <SecurityIcon fontSize="small" />,
-      },
-      {
-        title: t("Mening profilim"),
-        path: "/dashboard/account",
-        icon: <UserCircleIcon fontSize="small" />,
-      },
-    ],
-  },
+ 
   // {
   //   title: t("Platforms"),
   //   items: [
@@ -386,50 +290,7 @@ export const DashboardSidebar = (props) => {
             height: "100%",
           }}
         >
-          <div>
-            <Box sx={{ p: 3 }}>
-              <NextLink href="/" passHref>
-                <a>
-                  <Logo
-                    sx={{
-                      height: 42,
-                      width: 42,
-                    }}
-                  />
-                </a>
-              </NextLink>
-            </Box>
-            <Box sx={{ px: 2 }}>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  backgroundColor: "rgba(255, 255, 255, 0.04)",
-                  cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  px: 3,
-                  py: "11px",
-                  borderRadius: 1,
-                }}
-              >
-                <div>
-                  <Typography color="inherit" variant="subtitle1">
-                    VIPCRM
-                  </Typography>
-                  <Typography color="neutral.400" variant="body2">
-                    {t("Obuna turi")} : {t("Premium")}
-                  </Typography>
-                </div>
-                <SelectorIcon
-                  sx={{
-                    color: "neutral.500",
-                    width: 14,
-                    height: 14,
-                  }}
-                />
-              </Box>
-            </Box>
-          </div>
+
           <Divider
             sx={{
               borderColor: "#2D3748",
