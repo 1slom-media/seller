@@ -526,7 +526,7 @@ export async function sendSMSCode({ data, alert, router }) {
   try {
     const res = await axios({
       method: "POST",
-      url: `${server}/user/admin/login`,
+      url: `${server}/user/seller/login`,
       data: data,
     });
     router.push("/authentication/verify-code");
