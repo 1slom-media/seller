@@ -35,6 +35,12 @@ const skuHeading = [
     flash: true,
   },
   {
+    id: "DeliveryPrice",
+    label: "Yetkazib berish narxi",
+    align: "center",
+    flash: true,
+  },
+  {
     id: "referalPrice",
     label: "Admin to'lovi",
     align: "right",
@@ -46,6 +52,7 @@ const skuHeading = [
     align: "right",
     flash: true,
   },
+
   {
     id: "sellerPrice",
     label: "Narx harajatlarsiz",

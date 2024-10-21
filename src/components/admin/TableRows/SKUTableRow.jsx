@@ -12,6 +12,7 @@ const SkuTableRow = ({
   referalPrice,
   operatorPrice,
   sellerPrice,
+  DeliveryPrice,
   boughtPrice,
   skuTitle,
   availableAmount,
@@ -53,10 +54,17 @@ const SkuTableRow = ({
             copyObj["comission"] = val * 0.15;
           }
 
+
           if (selectionID === "comission") {
             copyObj["comission"] = val
           }
   
+
+         
+            copyObj["DeliveryPrice"] =  30000;
+          
+  
+
           // Update referalPrice to include comission
           if (selectionID === "referalPrice") {
             copyObj["referalPrice"] = val
@@ -67,7 +75,7 @@ const SkuTableRow = ({
             copyObj["fullPrice"] -
             (copyObj["comission"] || 0) -
             (copyObj["referalPrice"] || 0) -
-            (copyObj["operatorPrice"] || 0);
+            (copyObj["DeliveryPrice"] || 0)
   
           return copyObj;
         } else {
@@ -140,9 +148,15 @@ const SkuTableRow = ({
           {purchasePrice?.toLocaleString()}
         </Typography>
       </TableCell>
+     
       <TableCell sx={{ py: 0 }}>
         <Typography variant="string">
           {comission?.toLocaleString()}
+        </Typography>
+      </TableCell>
+      <TableCell sx={{ py: 0 }}>
+        <Typography variant="string">
+          {DeliveryPrice?.toLocaleString()}
         </Typography>
       </TableCell>
       <TableCell sx={{ py: 0 }}>
@@ -165,6 +179,17 @@ const SkuTableRow = ({
           value={operatorPrice}
           onChange={handleInputChange}
           name="operatorPrice"
+        />
+      </TableCell>
+      <TableCell sx={{ py: 0 }}>
+        <TextField
+          size="small"
+          sx={{ width: "120px" }}
+          placeholder="0"
+          type="number"
+          value={DeliveryPrice}
+          onChange={handleInputChange}
+          name="DeliveryPrice"
         />
       </TableCell>
       <TableCell sx={{ py: 0 }}>

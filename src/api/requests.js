@@ -1696,7 +1696,8 @@ export async function updateProductSKUList({ data, token, alert, callback }) {
     // Modify referalPrice to include comission for each SKU in the skuList
     data.skuList = data.skuList.map((sku) => ({
       ...sku,
-      referalPrice: (sku.referalPrice || 0) + (sku.comission || 0), // Combine referalPrice with comission
+      adminPrice: (sku.DeliveryPrice || 0) + (sku.comission || 0),
+      operatorPrice: 3000
     }));
 
     await axios({
