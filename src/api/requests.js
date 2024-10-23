@@ -1171,7 +1171,7 @@ export async function searchAdminOrders({ token, query }) {
 export async function getDashboardOrderStatistics({ token }) {
   const res = await axios({
     method: "GET",
-    url: `${server}/order/admin-status`,
+    url: `${server}/order/seller-status`,
     headers: {
       auth: token,
     },

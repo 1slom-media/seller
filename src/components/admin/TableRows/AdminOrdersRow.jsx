@@ -43,6 +43,7 @@ const AdminOrdersRow = ({
   orderItems,
   prevStatus,
   _id,
+  position,
   page,
   statusFilter,
   operator,
@@ -85,6 +86,9 @@ const AdminOrdersRow = ({
         <StyledTableCell align="center">{phone}</StyledTableCell>
         <StyledTableCell align="center">
           {count} {t("Dona")}
+        </StyledTableCell>
+        <StyledTableCell align="center">
+          {orderItems[0].position}
         </StyledTableCell>
         <StyledTableCell align="center">{getCity(city_id)}</StyledTableCell>
         <StyledTableCell align="center">
